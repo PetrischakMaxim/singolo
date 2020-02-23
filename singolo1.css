@@ -222,13 +222,13 @@ body {
   background-size: contain;
 }
 .slider__btn--prev::after {
-  background-image: url(/assets/images/chevron-left.svg);
+  background-image: url(assets/images/chevron-left.svg);
 }
 .slider__btn--next {
   left: 2px;
 }
 .slider__btn--next::after {
-  background-image: url(/assets/images/chevron-right.svg);
+  background-image: url(assets/images/chevron-right.svg);
 }
 .slider__btn:hover,
 .slider__btn:active {
