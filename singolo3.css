@@ -604,6 +604,12 @@ body {
   height: 202px;
   resize: none;
 }
+.form__field:valid:not(:placeholder-shown) {
+  box-shadow: 0 0 0 1px green;
+}
+.form__field:invalid:not(:placeholder-shown) {
+  box-shadow: 0 0 0 1px red;
+}
 .form__field::-webkit-input-placeholder {
   color: currentColor;
 }

@@ -349,18 +349,18 @@
                             <form action="#" class="form">
                                 <ul class="form__fields-list">
                                     <li class="form__item">
-                                        <label for="name-field " class="form__label visually-hidden">
+                                        <label for="name-field" class="form__label visually-hidden">
                                             Name
                                         </label>
-                                        <input id="name-field" type="text" class="form__field" required
-                                            placeholder="Name (Required)">
+                                        <input id="name-field" type="text" class="form__field" pattern="[a-z]{1,15}" required
+                                            placeholder="Name (Required)" title="Username should only contain lowercase letters. e.g. john">
                                     </li>
                                     <li class="form__item">
                                         <label for="email-field" class="form__label visually-hidden">
                                             Email
                                         </label>
                                         <input id="email-field" type="email" class="form__field" required
-                                            placeholder="Email (Required)">
+                                            placeholder="Email (Required)" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
                                     </li>
                                     <li class="form__item">
                                         <label for="subject-field" class="form__label visually-hidden">
