@@ -109,28 +109,28 @@ textarea {
   font-weight: 300;
   font-family: "Lato";
   font-display: swap;
-  src: url("assets/fonts/lato-light-webfont.woff2") format("woff2");
+  src: url("./assets/fonts/lato-light-webfont.woff2") format("woff2");
 }
 @font-face {
   font-style: normal;
   font-weight: 400;
   font-family: "Lato";
   font-display: swap;
-  src: url("assets/fonts/lato-regular-webfont.woff2") format("woff2");
+  src: url("./assets/fonts/lato-regular-webfont.woff2") format("woff2");
 }
 @font-face {
   font-style: normal;
   font-weight: 700;
   font-family: "Lato";
   font-display: swap;
-  src: url("assets/fonts/lato-bold-webfont.woff2") format("woff2");
+  src: url("./assets/fonts/lato-bold-webfont.woff2") format("woff2");
 }
 @font-face {
   font-style: normal;
   font-weight: 900;
   font-family: "Lato";
   font-display: swap;
-  src: url("assets/fonts/lato-black-webfont.woff2") format("woff2");
+  src: url("./assets/fonts/lato-black-webfont.woff2") format("woff2");
 }
 html {
   box-sizing: border-box;
@@ -303,13 +303,13 @@ body {
   background-size: contain;
 }
 .slider__btn--prev::after {
-  background-image: url(/assets/images/chevron-left.svg);
+  background-image: url(./assets/images/chevron-left.svg);
 }
 .slider__btn--next {
   left: 2px;
 }
 .slider__btn--next::after {
-  background-image: url(/assets/images/chevron-right.svg);
+  background-image: url(./assets/images/chevron-right.svg);
 }
 .slider__btn:hover, .slider__btn:active {
   opacity: 0.8;
@@ -348,7 +348,7 @@ body {
   align-items: center;
   width: 59px;
   height: 59px;
-  margin-right: 20px;
+  margin-right: 19px;
   text-align: center;
   border: 1px solid currentColor;
   border-radius: 50%;
@@ -602,6 +602,7 @@ body {
 }
 .form__field--textarea {
   height: 202px;
+  resize: none;
 }
 .form__field::-webkit-input-placeholder {
   color: currentColor;
