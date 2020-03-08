@@ -9,7 +9,8 @@ abbr[title] {
   -webkit-text-decoration: underline dotted;
           text-decoration: underline;
           text-decoration: underline dotted;
-  /* 2 */
+
+/* 2 */
 
   border-bottom: none;
   /* 1 */
@@ -27,12 +28,15 @@ optgroup,
 select,
 textarea {
   margin: 0;
-  /* 2 */
+
+/* 2 */
 
   font-size: 100%;
-  /* 1 */
+
+/* 1 */
   line-height: 1.15;
-  /* 1 */
+
+/* 1 */
   font-family: inherit;
   /* 1 */
 }
@@ -671,7 +675,7 @@ body {
   bottom: 0;
   left: 640px;
 
-  width: 100%;
+  width: 160px;
 }
 .form__field {
   display: block;
