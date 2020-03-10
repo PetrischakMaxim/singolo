@@ -748,10 +748,6 @@ body {
 .copyright {
   font-weight: normal;
   font-size: 12px;
-
-  -webkit-user-select: none;
-          user-select: none;
-  pointer-events: none;
 }
 
 /* Grid  */
