@@ -59,16 +59,61 @@ function switchPhoneScreen() {
   });
 }
 
+/* Portfolio. Переключение табов */
+function togglePortfolioTabs() {
+  const portflioLinks = document.querySelectorAll(".portfolio__link");
+  const portfolioCells = document.querySelectorAll(".portfolio .grid__cell");
+  let classList;
+  let isCliked = false;
+  portflioLinks.forEach(link => {
+    link.addEventListener("click", function(evt) {
+      evt.preventDefault();
+
+      this.classList.add("portfolio__link--active");
+      getSiblings(this.parentElement).forEach(sibling => {
+        sibling
+          .querySelector(".portfolio__link")
+          .classList.remove("portfolio__link--active");
+      });
+
+      if (isCliked) {
+        portfolioCells.forEach((cell, i) =>
+          cell.classList.remove(classList[i])
+        );
+      }
+      classList = createArrayWithCssClass(1, 12);
+      setTimeout(() => {
+        portfolioCells.forEach((cell, i) => cell.classList.add(classList[i]));
+        isCliked = true;
+      }, 0);
+    });
+  });
+}
+
+togglePortfolioTabs();
+
+function createArrayWithCssClass(from, to, n = to) {
+  return [...Array(to - from + 1).keys()]
+    .map(i => i + from)
+    .reduce(
+      (arr, el) => (
+        arr.splice(Math.random() * (arr.length + 1), 0, `item-${el}`), arr
+      ),
+      []
+    )
+    .slice(0, n);
+}
+
 /* Portfolio. Взаимодействие с картинками  */
+function getSiblings(n) {
+  return [...n.parentElement.children].filter(c => c != n);
+}
 function toggleStateForPortfolio() {
   const settings = {
     parentClass: ".portfolio__work",
-    stateClass: "is-active",
-    getSiblings(n) {
-      return [...n.parentElement.children].filter(c => c != n);
-    }
+    stateClass: "is-active"
   };
-  const { parentClass, stateClass, getSiblings } = settings;
+  const { parentClass, stateClass } = settings;
   const portfolioWorks = document.querySelectorAll(parentClass);
   portfolioWorks.forEach(work => {
     work.addEventListener("click", function(evt) {
