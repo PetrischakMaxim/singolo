@@ -201,7 +201,6 @@ class FormHandler {
   }
 
   closePopup(evt) {
-    console.log(evt);
     const currentTarget = evt.target;
     if (
       currentTarget.classList.contains("popup") ||
