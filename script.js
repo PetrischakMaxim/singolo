@@ -1,4 +1,6 @@
+"use strict";
 /* Header */
+
 function linksScrollAfterClick() {
   const pageLinks = document.querySelectorAll(".navigation__item a");
 
@@ -12,6 +14,7 @@ function linksScrollAfterClick() {
 }
 
 /* Slider. Переключение слайдов */
+
 function sliderMove() {
   let currentSlide = 0;
   let visibleSliderClass = "slider__slide--visible";
@@ -48,7 +51,9 @@ function sliderMove() {
     });
   });
 }
+
 /* Slider. Активация экранов телефонов */
+
 function switchPhoneScreen() {
   const phoneZone = document.querySelectorAll(".slider__zone");
   phoneZone.forEach(phone => {
@@ -60,6 +65,7 @@ function switchPhoneScreen() {
 }
 
 /* Portfolio. Переключение табов */
+
 function togglePortfolioTabs() {
   const portflioLinks = document.querySelectorAll(".portfolio__link");
   const portfolioCells = document.querySelectorAll(".portfolio .grid__cell");
@@ -90,8 +96,6 @@ function togglePortfolioTabs() {
   });
 }
 
-togglePortfolioTabs();
-
 function createArrayWithCssClass(from, to, n = to) {
   return [...Array(to - from + 1).keys()]
     .map(i => i + from)
@@ -105,9 +109,11 @@ function createArrayWithCssClass(from, to, n = to) {
 }
 
 /* Portfolio. Взаимодействие с картинками  */
+
 function getSiblings(n) {
   return [...n.parentElement.children].filter(c => c != n);
 }
+
 function toggleStateForPortfolio() {
   const settings = {
     parentClass: ".portfolio__work",
@@ -126,9 +132,103 @@ function toggleStateForPortfolio() {
   });
 }
 
+/* Get a quote */
+
+class FormHandler {
+  constructor(options = {}) {
+    this.settings = this.setSettings(options);
+    this.init();
+  }
+
+  init() {
+    const { pageForm, formFields } = this.settings;
+    this.form = document.querySelector(pageForm);
+    this.fields = this.form.querySelectorAll(formFields);
+    this.response = {};
+    this.filteredResponse = {};
+    this.getFormFields();
+  }
+
+  setSettings(options) {
+    const defaults = {
+      pageForm: ".form",
+      formFields: ".form__field"
+    };
+    return Object.assign({}, defaults, options);
+  }
+
+  getFormFields(obj = this.response) {
+    return new Promise((resolve, reject) => {
+      this.fields.forEach(field => (obj[field.dataset.response] = field.value));
+      Object.keys(obj).length == 0 ? reject(obj) : resolve(obj);
+    });
+  }
+
+  filterResponse(data = this.response) {
+    const arr = Object.values(data).map(i => i);
+    for (let i of Object.keys(data)) {
+      const key = i;
+      const value = data[i];
+      switch (key) {
+        case "subject":
+        case "description":
+          this.filteredResponse[key] = value;
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  renderResult(data = this.filteredResponse) {
+    let commonPopupData = "";
+    for (let i of Object.keys(data)) {
+      const value = data[i];
+      commonPopupData += `<p>${
+        value ? `${i[0].toUpperCase()}${i.slice(1)}: ${value}` : `Without ${i}`
+      }</p>`;
+    }
+    const popupTemplate = `<div class="popup">
+          <div class="popup__inner">
+              <div class="popup__content">
+                <h3 class="popup__title">The letter was sent</h3>
+                ${commonPopupData}
+                <button class="popup__button">OK</button>
+              </div>
+          </div>
+      </div>`;
+    document.body.insertAdjacentHTML("beforeend", popupTemplate);
+  }
+
+  closePopup(evt) {
+    console.log(evt);
+    const currentTarget = evt.target;
+    if (
+      currentTarget.classList.contains("popup") ||
+      currentTarget.classList.contains("popup__button")
+    ) {
+      document.querySelector(".popup").remove();
+    }
+    return false;
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   linksScrollAfterClick();
-  toggleStateForPortfolio();
   sliderMove();
   switchPhoneScreen();
+  togglePortfolioTabs();
+  toggleStateForPortfolio();
+
+  const pageForm = new FormHandler();
+  pageForm.form.addEventListener("submit", evt => {
+    evt.preventDefault();
+    const response = pageForm.getFormFields();
+    response
+      .then(() => pageForm.filterResponse())
+      .then(() => pageForm.renderResult());
+  });
+  document.body.addEventListener("click", evt => {
+    pageForm.closePopup(evt);
+  });
 });

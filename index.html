@@ -366,7 +366,8 @@
                                         </label>
                                         <input id="name-field" type="text" class="form__field" pattern="[a-z]{1,15}"
                                             required placeholder="Name (Required)"
-                                            title="Username should only contain lowercase letters. e.g. john">
+                                            title="Username should only contain lowercase letters. e.g. john"
+                                            data-response="name">
                                     </li>
                                     <li class="form__item">
                                         <label for="email-field" class="form__label visually-hidden">
@@ -374,22 +375,25 @@
                                         </label>
                                         <input id="email-field" type="email" class="form__field" required
                                             placeholder="Email (Required)"
-                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" data-response="email">
                                     </li>
                                     <li class="form__item">
                                         <label for="subject-field" class="form__label visually-hidden">
                                             Subject
                                         </label>
-                                        <input id="subject-field" type="text" class="form__field" placeholder="Subject">
+                                        <input maxlength="20" id="subject-field" type="text" class="form__field"
+                                            placeholder="Subject" data-response="subject">
                                     </li>
                                     <li class="form__item">
                                         <label for="name-field" class="form__label visually-hidden">
                                             Describe your project in detail...
                                         </label>
-                                        <textarea id="textarea-field" class="form__field form__field--textarea"
-                                            placeholder="Describe your project in detail..."></textarea>
+                                        <textarea maxlength="50" id="textarea-field"
+                                            class="form__field form__field--textarea"
+                                            placeholder="Describe your project in detail..."
+                                            data-response="description"></textarea>
                                     </li>
-                                    <li class="form__item form__item--absolute">
+                                    <li class="form__item">
                                         <button class="form__submit-btn" type="submit">Send request</button>
                                     </li>
                                 </ul>
