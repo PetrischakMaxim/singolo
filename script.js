@@ -8,7 +8,6 @@ function linksScrollAfterClick() {
   pageLinks.forEach(link => {
     link.addEventListener("click", function(evt) {
       evt.preventDefault();
-      console.log(this);
       pageLinks.forEach(link => link.classList.remove(stateClass));
       this.classList.add(stateClass);
       scrollToTarget(this);
