@@ -6,7 +6,7 @@ function linksScrollAfterClick() {
   const pageLinks = document.querySelectorAll(".navigation__link");
   const stateClass = "navigation__link--current";
   pageLinks.forEach(link => {
-    link.addEventListener("click", function(evt) {
+    link.addEventListener("click", function (evt) {
       evt.preventDefault();
       pageLinks.forEach(link => link.classList.remove(stateClass));
       this.classList.add(stateClass);
@@ -22,6 +22,11 @@ function scrollToTarget(element) {
 
 linksScrollAfterClick();
 
+/* Mobile menu toggler */
+document.querySelector('.mobile-nav-btn').addEventListener('click', function () {
+  this.parentElement.classList.toggle('menu-open');
+})
+
 /* Slider function */
 
 function sliderMove() {
@@ -35,7 +40,7 @@ function sliderMove() {
   const stateButtonClasss = "disabled";
 
   sliderButtons.forEach(button => {
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
       /* Prevent double click */
       this.classList.add(stateButtonClasss);
       setTimeout(() => this.classList.remove(stateButtonClasss), 750);
@@ -99,7 +104,7 @@ function togglePortfolioTabs() {
   let classList;
   let isCliked = false;
   portflioLinks.forEach(link => {
-    link.addEventListener("click", function(evt) {
+    link.addEventListener("click", function (evt) {
       evt.preventDefault();
 
       this.classList.add("portfolio__link--active");
@@ -151,7 +156,7 @@ function toggleStateForPortfolio() {
   const { parentClass, stateClass } = settings;
   const portfolioWorks = document.querySelectorAll(parentClass);
   portfolioWorks.forEach(work => {
-    work.addEventListener("click", function(evt) {
+    work.addEventListener("click", function (evt) {
       evt.preventDefault();
       this.classList.toggle(stateClass);
       getSiblings(this.parentElement).forEach(sibling => {
@@ -217,7 +222,7 @@ class FormHandler {
       const value = data[i];
       commonPopupData += `<p>${
         value ? `${i[0].toUpperCase()}${i.slice(1)}: ${value}` : `Without ${i}`
-      }</p>`;
+        }</p>`;
     }
     const popupTemplate = `<div class="popup">
           <div class="popup__inner">
